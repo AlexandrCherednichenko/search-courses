@@ -1,0 +1,129 @@
+@charset "UTF-8";
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 20px;
+}
+
+h4 {
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.courses {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 8px;
+  margin-bottom: 26px;
+}
+
+.price {
+  width: 400px;
+}
+
+.price h6 {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.price__input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 16px;
+}
+
+.price__input .price__input-from,
+.price__input .price__input-to {
+  position: relative;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.price__input .price__input-from::before,
+.price__input .price__input-to::before {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+}
+
+.price__input .price__input-from.not-empty .clear,
+.price__input .price__input-to.not-empty .clear {
+  display: block;
+}
+
+.price__input .price__input-from input,
+.price__input .price__input-to input {
+  width: 100%;
+  border: 1px solid gray;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  padding: 10px 10px 10px 30px;
+}
+
+.price__input .price__input-from .clear,
+.price__input .price__input-to .clear {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background-image: url("data:image/svg+xml,%3Csvg width='13' height='12' viewBox='0 0 13 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M12.2158 0.284211C12.4053 0.473685 12.5 0.710525 12.5 0.994737C12.5 1.27895 12.4053 1.51579 12.2158 1.70526L7.92105 6L12.2158 10.2947C12.4053 10.4842 12.5 10.7211 12.5 11.0053C12.5 11.2895 12.4053 11.5263 12.2158 11.7158C12.0263 11.9053 11.7895 12 11.5053 12C11.2211 12 10.9842 11.9053 10.7947 11.7158L6.5 7.42105L2.20526 11.7158C2.01579 11.9053 1.77895 12 1.49474 12C1.21052 12 0.973685 11.9053 0.784211 11.7158C0.594736 11.5263 0.5 11.2895 0.5 11.0053C0.5 10.7211 0.594736 10.4842 0.784211 10.2947L5.07895 6L0.784211 1.70526C0.594736 1.51579 0.5 1.27895 0.5 0.994737C0.5 0.710525 0.594736 0.473685 0.784211 0.284211C0.973685 0.0947359 1.21052 0 1.49474 0C1.77895 0 2.01579 0.0947359 2.20526 0.284211L6.5 4.57895L10.7947 0.284211C10.9842 0.0947359 11.2211 0 11.5053 0C11.7895 0 12.0263 0.0947359 12.2158 0.284211Z' fill='%23B6C2DA'/%3E%3C/svg%3E%0A");
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
+
+.price__input .price__input-from::before {
+  content: "от";
+}
+
+.price__input .price__input-to::before {
+  content: "до";
+}
+
+.price .price__search,
+.price .filter__clear {
+  width: 100%;
+  padding: 10px;
+  background-color: lightgray;
+  border: none;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  cursor: pointer;
+}
+
+.price .price__search {
+  margin-bottom: 16px;
+}
