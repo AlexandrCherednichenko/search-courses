@@ -15,6 +15,61 @@ h4 {
    margin-bottom: 16px;
 }
 
+.sorting {
+   position: relative;
+   width: 400px;
+   margin-bottom: 20px;
+   &.active {
+      .sorting__list {
+         opacity: 1;
+         pointer-events: visible;
+         overflow: visible;
+         visibility: visible;
+      }
+   }
+   &__header {
+      border: 1px solid lightgray;
+      border-radius: 6px;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      -ms-border-radius: 6px;
+      -o-border-radius: 6px;
+      padding: 10px 20px;
+      cursor: pointer;
+   }
+   &__list {
+      position: absolute;
+      top: 46px;
+      z-index: 5;
+      width: 100%;
+      background-color: white;
+      border: 1px solid lightgray;
+      border-radius: 6px;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      -ms-border-radius: 6px;
+      -o-border-radius: 6px;
+      padding: 10px;
+
+      opacity: 0;
+      pointer-events: none;
+      overflow: hidden;
+      visibility: hidden;
+      .item {
+         padding: 10px;
+         &:hover {
+            background-color: lightgray;
+            border-radius: 6px;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            -ms-border-radius: 6px;
+            -o-border-radius: 6px;
+            cursor: pointer;
+         }
+      }
+   }
+}
+
 .courses {
    display: flex;
    flex-direction: column;
@@ -37,11 +92,15 @@ h4 {
          font-weight: 600;
          margin-bottom: 6px;
       }
+      b {
+         font-weight: 600;
+      }
    }
 }
 
 .price {
    width: 400px;
+   margin-bottom: 16px;
    h6 {
       font-size: 20px;
       line-height: 24px;
@@ -80,6 +139,15 @@ h4 {
             -ms-border-radius: 6px;
             -o-border-radius: 6px;
             padding: 10px 10px 10px 30px;
+            transition: 0.5s;
+            -webkit-transition: 0.5s;
+            -moz-transition: 0.5s;
+            -ms-transition: 0.5s;
+            -o-transition: 0.5s;
+            &.error {
+               border-color: red;
+               box-shadow: 2px 2px 10px rgba(255, 0, 0, 0.6);
+            }
          }
          .clear {
             display: none;
@@ -121,5 +189,30 @@ h4 {
    }
    .price__search {
       margin-bottom: 16px;
+   }
+}
+.popular__queries {
+   width: 400px;
+   h6 {
+      font-size: 20px;
+      line-height: 24px;
+      font-weight: 600;
+      margin-bottom: 10px;
+   }
+   .button {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      button {
+         padding: 10px;
+         background-color: lightgray;
+         border: none;
+         border-radius: 6px;
+         -webkit-border-radius: 6px;
+         -moz-border-radius: 6px;
+         -ms-border-radius: 6px;
+         -o-border-radius: 6px;
+         cursor: pointer;
+      }
    }
 }

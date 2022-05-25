@@ -17,6 +17,63 @@ h4 {
   margin-bottom: 16px;
 }
 
+.sorting {
+  position: relative;
+  width: 400px;
+  margin-bottom: 20px;
+}
+
+.sorting.active .sorting__list {
+  opacity: 1;
+  pointer-events: visible;
+  overflow: visible;
+  visibility: visible;
+}
+
+.sorting__header {
+  border: 1px solid lightgray;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.sorting__list {
+  position: absolute;
+  top: 46px;
+  z-index: 5;
+  width: 100%;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  padding: 10px;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.sorting__list .item {
+  padding: 10px;
+}
+
+.sorting__list .item:hover {
+  background-color: lightgray;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  cursor: pointer;
+}
+
 .courses {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -54,8 +111,13 @@ h4 {
   margin-bottom: 6px;
 }
 
+.courses li b {
+  font-weight: 600;
+}
+
 .price {
   width: 400px;
+  margin-bottom: 16px;
 }
 
 .price h6 {
@@ -106,6 +168,18 @@ h4 {
   -ms-border-radius: 6px;
   -o-border-radius: 6px;
   padding: 10px 10px 10px 30px;
+  transition: 0.5s;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+}
+
+.price__input .price__input-from input.error,
+.price__input .price__input-to input.error {
+  border-color: red;
+  -webkit-box-shadow: 2px 2px 10px rgba(255, 0, 0, 0.6);
+          box-shadow: 2px 2px 10px rgba(255, 0, 0, 0.6);
 }
 
 .price__input .price__input-from .clear,
@@ -151,4 +225,35 @@ h4 {
 
 .price .price__search {
   margin-bottom: 16px;
+}
+
+.popular__queries {
+  width: 400px;
+}
+
+.popular__queries h6 {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.popular__queries .button {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.popular__queries .button button {
+  padding: 10px;
+  background-color: lightgray;
+  border: none;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  cursor: pointer;
 }

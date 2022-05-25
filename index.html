@@ -14,10 +14,18 @@
 
    <h4>Доступные курсы</h4>
 
+   <div class="sorting">
+      <p class="sorting__header">Сортировка</p>
+      <div class="sorting__list">
+         <p class="item" data-value="ascending">По возрастанию цены</p>
+         <p class="item" data-value="descending">По убыванию цены</p>
+      </div>
+   </div>
+
    <ul class="courses"></ul>
 
    <div class="price">
-      <h6>Цена</h6>
+      <h6>Фильтр по цене</h6>
       <div class="price__input">
          <div class="price__input-from">
             <input type="text" maxlength="9">
@@ -28,13 +36,22 @@
             <p class="clear"></p>
          </div>
       </div>
-      <button class="price__search">Поиск по цене</button>
-      <button class="filter__clear">Сбросить фильтр</button>
+      <button class="price__search">Поиск</button>
+      <button class="filter__clear">Сбросить фильтры</button>
+   </div>
+
+   <div class="popular__queries">
+      <h6>Популярные запросы</h6>
+      <div class="button">
+         <button data-from="null" data-to="200">Запрос 1</button>
+         <button data-from="100" data-to="350">3апрос 2</button>
+         <button data-from="200" data-to="null">Запрос 3</button>
+      </div>
    </div>
 
 
 
-   <script src="script.js"></script>
+   <script src="./js/script.js"></script>
 </body>
 
 </html>

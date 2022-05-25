@@ -12,8 +12,10 @@ document.addEventListener("DOMContentLoaded", function () {
       { name: "Courses in France", prices: [null, null] },
    ];
    let arrValue = [];
-   let arr1 = [];
-   let arr2 = [];
+
+   let sorting = document.querySelector('.sorting');
+   let sortingHeader = sorting.querySelector('.sorting__header');
+   let sortingList = sorting.querySelector('.sorting__list');
 
    let coursesBlock = document.querySelector('.courses');
    let item
@@ -81,10 +83,10 @@ document.addEventListener("DOMContentLoaded", function () {
       coursesBlock.textContent = '';
       arr.forEach(elem => {
          item =
-            `<li>
+            `<li data-name="${elem['name']}" data-from="${elem['prices'][0] != null ? elem['prices'][0] : null}" data-to="${elem['prices'][1] != null ? elem['prices'][1] : null}">
                <span class="name">${elem['name']}.</span>
-               <span>Prices from: ${elem['prices'][0] != null ? elem['prices'][0] : 'price from not specified'}.</span>
-               <span>Prices to: ${elem['prices'][1] != null ? elem['prices'][1] : 'price to not specified'}.</span>
+               <span class="from">Цена от: <b>${elem['prices'][0] != null ? elem['prices'][0] : 'начальная цена не указанна'}</b>.</span>
+               <span class="to">Цена до: <b>${elem['prices'][1] != null ? elem['prices'][1] : 'конечная цена не указанна'}</b>.</span>
             </li>`
          coursesBlock.insertAdjacentHTML("beforeend", item)
       })
@@ -93,6 +95,47 @@ document.addEventListener("DOMContentLoaded", function () {
 
    document.addEventListener('click', (event) => {
       let target = event.target;
+
+      // нажатие на поле сортировки
+      if (target == sortingHeader) {
+         sorting.classList.toggle('active')
+      } else {
+         if (sorting.classList.contains('active')) {
+            sorting.classList.remove('active')
+         }
+      }
+
+      // нажатие на элементы из списка сортировки
+      if (target.closest('.item') && target.parentNode == sortingList) {
+         sortingHeader.textContent = target.closest('.item').textContent
+
+         let coursesBlockItem = document.querySelectorAll('li')
+         let arr = []
+         if (coursesBlockItem.length != 0) {
+            coursesBlockItem.forEach(item => {
+               arr.push(
+                  {
+                     name: item.getAttribute('data-name'),
+                     prices: [item.getAttribute('data-from') != 'null' ? item.getAttribute('data-from') : null,
+                     item.getAttribute('data-to') != 'null' ? item.getAttribute('data-to') : null]
+                  }
+               )
+            })
+         }
+
+         // сортировка
+         if (target.closest('.item').getAttribute("data-value") == 'ascending') {
+            arr.sort(function (a, b) {
+               return a.prices[0] - b.prices[0];
+            });
+            createList(arr)
+         } else {
+            arr.sort(function (a, b) {
+               return b.prices[0] - a.prices[0];
+            });
+            createList(arr)
+         }
+      }
 
       // нажатие на крестик в поле от
       if (target.closest('.clear') && target.closest('.price__input-from')) {
@@ -106,13 +149,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // нажатие кнопк поиск
       if (target == serchBtn) {
+         sortingHeader.textContent = 'Сортировка'
          let valueFrom = priceFrom.value
          let valueTo = priceTo.value
 
-         courses.forEach((elem, index) => {
+         courses.forEach((elem) => {
             if (valueFrom != 0 && valueTo != 0) {
-               if ((valueFrom <= elem['prices'][1] || elem['prices'][1] == null) && (valueTo >= elem['prices'][0] || elem['prices'][0] == null)) {
-                  arrValue.push(elem)
+               if (Number(valueFrom) > Number(valueTo)) {
+                  priceFrom.classList.add('error');
+                  priceTo.classList.add('error');
+                  setTimeout(() => {
+                     priceFrom.classList.remove('error');
+                     priceTo.classList.remove('error');
+                  }, 1000)
+               } else {
+                  if ((valueFrom <= elem['prices'][1] || elem['prices'][1] == null) && (valueTo >= elem['prices'][0] || elem['prices'][0] == null)) {
+                     arrValue.push(elem)
+                  }
                }
             } else if (valueFrom != 0) {
                if (elem['prices'][0] != null) {
@@ -142,17 +195,49 @@ document.addEventListener("DOMContentLoaded", function () {
                      arrValue.push(elem)
                   }
                }
+            } else {
+               arrValue = courses;
+
+               priceFrom.classList.add('error');
+               priceTo.classList.add('error');
+               setTimeout(() => {
+                  priceFrom.classList.remove('error');
+                  priceTo.classList.remove('error');
+               }, 1000)
             }
          })
-         createList(arrValue)
-         arrValue = []
+
+         if (arrValue.length != 0) {
+            createList(arrValue)
+            arrValue = []
+         } else {
+            coursesBlock.textContent = 'К сожаления курсы не найденны'
+         }
       }
 
       // нажатие кнопк сбросить фильтр
       if (target == clearFilter) {
+         sortingHeader.textContent = 'Сортировка'
          clearInput(priceFrom)
          clearInput(priceTo)
          createList(courses)
+      }
+
+      // нажнатие на популярные значения
+      if (target.tagName == 'BUTTON' && target.closest('.popular__queries')) {
+         sortingHeader.textContent = 'Сортировка'
+
+         if (target.getAttribute('data-from') != 'null') {
+            priceFrom.value = target.getAttribute('data-from')
+            priceFrom.parentNode.classList.add('not-empty')
+         }
+
+         if (target.getAttribute('data-to') != 'null') {
+            priceTo.value = target.getAttribute('data-from')
+            priceTo.parentNode.classList.add('not-empty')
+         }
+
+         serchBtn.click();
       }
    })
 });
